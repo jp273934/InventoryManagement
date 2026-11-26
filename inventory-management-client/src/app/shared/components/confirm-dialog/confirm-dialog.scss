@@ -1,0 +1,46 @@
+
+:host {
+  display: block;
+}
+
+h2 {
+  font-size: 22px;
+  font-weight: 500;
+  color: #263238;
+}
+
+.confirmation-message {
+  display: flex;
+  align-items: flex-start;
+  gap: 16px;
+  padding: 8px 0;
+
+  p {
+    margin: 0;
+    font-size: 15px;
+    line-height: 1.6;
+  }
+}
+
+.warning-icon {
+  color: #f57c00;
+  font-size: 36px;
+  width: 36px;
+  height: 36px;
+  flex-shrink: 0;
+}
+
+mat-dialog-actions {
+  padding: 16px 24px;
+  border-top: 1px solid #e0e0e0;
+  gap: 8px;
+}
+
+.confirm-button {
+  background-color: #c62828 !important;
+  color: #ffffff !important;
+
+  &:hover {
+    background-color: #b71c1c !important;
+  }
+}

@@ -1,0 +1,103 @@
+
+<h2 mat-dialog-title>{{ dialogTitle }}</h2>
+
+<form [formGroup]="productForm" (ngSubmit)="save()">
+  <mat-dialog-content>
+
+    <mat-form-field appearance="outline">
+      <mat-label>Product Name</mat-label>
+      <input matInput formControlName="name" maxlength="100">
+
+      @if (productForm.controls.name.hasError('required')) {
+        <mat-error>Product name is required.</mat-error>
+      }
+    </mat-form-field>
+
+    <mat-form-field appearance="outline">
+      <mat-label>SKU</mat-label>
+      <input matInput formControlName="sku" maxlength="50">
+
+      @if (productForm.controls.sku.hasError('required')) {
+        <mat-error>SKU is required.</mat-error>
+      }
+    </mat-form-field>
+
+    <mat-form-field appearance="outline">
+      <mat-label>Description</mat-label>
+      <textarea
+        matInput
+        formControlName="description"
+        rows="3"
+        maxlength="500">
+      </textarea>
+    </mat-form-field>
+
+    <mat-form-field appearance="outline">
+      <mat-label>Unit Price</mat-label>
+      <span matTextPrefix>$&nbsp;</span>
+      <input
+        matInput
+        type="number"
+        formControlName="unitPrice"
+        min="0"
+        step="0.01">
+
+      @if (productForm.controls.unitPrice.invalid) {
+        <mat-error>Enter a valid non-negative price.</mat-error>
+      }
+    </mat-form-field>
+
+    <mat-form-field appearance="outline">
+      <mat-label>Quantity in Stock</mat-label>
+      <input
+        matInput
+        type="number"
+        formControlName="quantityInStock"
+        min="0"
+        step="1">
+
+      @if (productForm.controls.quantityInStock.invalid) {
+        <mat-error>Enter a valid stock quantity.</mat-error>
+      }
+    </mat-form-field>
+
+    <mat-form-field appearance="outline">
+      <mat-label>Reorder Level</mat-label>
+      <input
+        matInput
+        type="number"
+        formControlName="reorderLevel"
+        min="0"
+        step="1">
+
+      @if (productForm.controls.reorderLevel.invalid) {
+        <mat-error>Enter a valid reorder level.</mat-error>
+      }
+    </mat-form-field>
+@if (errorMessage) {
+  <div class="error-message" role="alert">
+    <mat-icon>error_outline</mat-icon>
+    <span>{{ errorMessage }}</span>
+  </div>
+}
+  </mat-dialog-content>
+
+  <mat-dialog-actions align="end">
+  <button
+    mat-button
+    type="button"
+    mat-dialog-close
+    [disabled]="isSaving">
+    Cancel
+  </button>
+
+  <button
+    mat-flat-button
+    type="submit"
+    [disabled]="productForm.invalid || isSaving">
+    <mat-icon>save</mat-icon>
+    {{ isSaving ? 'Saving...' : 'Save Product' }}
+  </button>
+</mat-dialog-actions>
+</form>
+
